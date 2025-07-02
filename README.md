@@ -44,30 +44,41 @@ A Flask-based backend for **Sanskrit language pipelining** — combining **speec
 ```bash
 git clone https://github.com/Rahul-chhajed/pipelining-sanskrit.git
 cd pipelining-sanskrit
+```
 
-2. Python Backend Setup (using uv)
-# Create virtual environment using uv
+### 2. Python Backend Setup (using uv)
+
+```bash
 uv venv
 
-# Activate the virtual environment
+#Activate the virtual environment
 # On Linux/macOS:
 source .venv/bin/activate
 # On Windows:
 .venv\Scripts\activate
+```
 
 # Install dependencies using uv
+```bash
 uv pip install -r requirements.txt
+```
 
-Create a .env file in the root directory:
+### Create a .env file in the root directory:
+```bash
 GEMINI_API_KEY=your_gemini_api_key_here
+```
 
-3. Node.js Setup for TTS
+### 3. Node.js Setup for TTS
+```bash
 npm install
+```
 
-4. Run the Flask App
+### 4. Run the Flask App
+```bash
 python main.py
+```
 
-📌 Notes
+##📌 Notes
 Whisper model used is large — ensure you have sufficient system resources.
 Audio files are removed after processing to save space.
 Gemini prompt is hardcoded for Sanskrit responses in Devanagari script.

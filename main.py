@@ -6,10 +6,10 @@ from gtts import gTTS
 import whisper
 import google.generativeai as genai
 from dotenv import load_dotenv
+import subprocess
 
 load_dotenv()
-model = whisper.load_model("base")  
-
+model = whisper.load_model("large")  
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 app = Flask(__name__)
@@ -31,37 +31,29 @@ def transcribe():
     audio.save(filepath)
     
     try:
-        result = model.transcribe(filepath, language='Sanskrit', task='translate')
+        result = model.transcribe(filepath, language='sa')
         print("Whisper result:", result)
-        english_text = result['text'].strip()
-        print("English transcription:", english_text)
+        sanskrit_text = result['text'].strip()
+        print("sanskrit transcription:", sanskrit_text)
 
-        improve_prompt = f"""
-Fix and improve this SANSKRIT sentence to make it grammatically correct and clear:
-"{english_text}"
-
-Respond with only the corrected Sanskrit sentence, nothing else.
-"""
+       
         
         gemini_model = genai.GenerativeModel("gemini-2.0-flash")
-        improve_response = gemini_model.generate_content(improve_prompt)
-        corrected_english = improve_response.text.strip()
-        print("Corrected English:", corrected_english)
 
         sanskrit_prompt = f"""
-A person said in Sanskrit: "{corrected_english}"
+A person said in Sanskrit: "{sanskrit_text}"
 
 Respond appropriately in Sanskrit using Devanagari script. Give only the Sanskrit response, nothing else. No explanations, no English text, just the Sanskrit response.
 Tip:If someone asks your name type मिथुन .
 """
         
         sanskrit_response = gemini_model.generate_content(sanskrit_prompt)
-        sanskrit_text = sanskrit_response.text.strip()
+        sanskrit_r = sanskrit_response.text.strip()
         print("Sanskrit response:", sanskrit_text)
 
         return jsonify({
-            'transcribed': corrected_english,
-            'response': sanskrit_text
+            'transcribed': sanskrit_text,
+            'response': sanskrit_r
         })
 
     except Exception as e:
@@ -80,8 +72,12 @@ def tts():
     filepath = os.path.join(OUTPUT_FOLDER, filename)
 
     try:
-        tts = gTTS(text=text, lang='hi', slow=False)  
-        tts.save(filepath)
+        tts =subprocess.run(
+        ["node", "index.js", text, filename],
+        capture_output=True,
+        text=True
+    )
+        
         return jsonify({'audio_url': f'/outputs/{filename}'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500

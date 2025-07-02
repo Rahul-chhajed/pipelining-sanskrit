@@ -15,14 +15,14 @@ A Flask-based backend for **Sanskrit language pipelining** — combining **speec
 
 ## 📁 Project Structure
 
--|── main.py # Flask backend
--├── index.js # Node.js script for TTS
--├── uploads/ # Temporary audio uploads
--├── outputs/ # Output MP3 files
--├── .env # (not committed) for storing Gemini API key
--├── requirements.txt # Python dependencies
--├── package.json # Node.js dependencies
--|── README.md
+|── main.py # Flask backend <br>
+├── index.js # Node.js script for TTS <br>
+├── uploads/ # Temporary audio uploads <br>
+├── outputs/ # Output MP3 files <br>
+├── .env # (not committed) for storing Gemini API key <br>
+├── requirements.txt # Python dependencies <br>
+├── package.json # Node.js dependencies <br>
+|── README.md
 ---
 
 ## 🧪 Tech Stack
@@ -79,7 +79,8 @@ python main.py
 ```
 
 ##📌 Notes
--Whisper model used is large — ensure you have sufficient system resources.
--Audio files are removed after processing to save space.
--Gemini prompt is hardcoded for Sanskrit responses in Devanagari script.
+
+-Whisper model used is large — ensure you have sufficient system resources. <br>  
+-Audio files are removed after processing to save space. <br>  
+-Gemini prompt is hardcoded for Sanskrit responses in Devanagari script.  
 

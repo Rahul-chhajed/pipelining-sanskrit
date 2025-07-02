@@ -15,14 +15,14 @@ A Flask-based backend for **Sanskrit language pipelining** — combining **speec
 
 ## 📁 Project Structure
 
-|── main.py # Flask backend
-├── index.js # Node.js script for TTS
-├── uploads/ # Temporary audio uploads
-├── outputs/ # Output MP3 files
-├── .env # (not committed) for storing Gemini API key
-├── requirements.txt # Python dependencies
-├── package.json # Node.js dependencies
-└── README.md
+-|── main.py # Flask backend
+-├── index.js # Node.js script for TTS
+-├── uploads/ # Temporary audio uploads
+-├── outputs/ # Output MP3 files
+-├── .env # (not committed) for storing Gemini API key
+-├── requirements.txt # Python dependencies
+-├── package.json # Node.js dependencies
+-|── README.md
 ---
 
 ## 🧪 Tech Stack
@@ -58,28 +58,28 @@ source .venv/bin/activate
 .venv\Scripts\activate
 ```
 
-# Install dependencies using uv
+## 3.Install dependencies using uv
 ```bash
 uv pip install -r requirements.txt
 ```
 
-### Create a .env file in the root directory:
+### 4.Create a .env file in the root directory:
 ```bash
 GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
-### 3. Node.js Setup for TTS
+### 5. Node.js Setup for TTS
 ```bash
 npm install
 ```
 
-### 4. Run the Flask App
+### 6. Run the Flask App
 ```bash
 python main.py
 ```
 
 ##📌 Notes
-Whisper model used is large — ensure you have sufficient system resources.
-Audio files are removed after processing to save space.
-Gemini prompt is hardcoded for Sanskrit responses in Devanagari script.
+-Whisper model used is large — ensure you have sufficient system resources.
+-Audio files are removed after processing to save space.
+-Gemini prompt is hardcoded for Sanskrit responses in Devanagari script.
 
